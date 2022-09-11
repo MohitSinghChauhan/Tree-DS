@@ -5,11 +5,12 @@ using namespace std;
 
 int calcHeightOfATree(TreeNode<int>* root){
     int height =1;
+    int x=0;
     for (int i = 0; i < root->children.size(); i++)
     {
-        height+=max(height,calcHeightOfATree(root->children[i]));
+        x=max(x,calcHeightOfATree(root->children[i]));
     }
-    return height;
+    return height+x;
 }
 
 void printTree3(TreeNode<int> *root)
