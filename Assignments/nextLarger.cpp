@@ -19,6 +19,21 @@ int findNextLarger(TreeNode<int> *root, int k)
     return minDiff;
 }
 
+int findNextLarger2(TreeNode<int> *root, int k)
+{
+    int nextlarger=10e7;
+    if(root->data-k > 0){
+        nextlarger=root->data;
+    }
+
+    for (int i = 0; i < root->children.size(); i++)
+    {
+       nextlarger = min(nextlarger,findNextLarger2(root->children[i],k));       
+    }
+
+    return nextlarger;
+}
+
 void printTree3(TreeNode<int> *root)
 {
     // cout<<root->data<<endl;
@@ -75,6 +90,8 @@ int main()
     int k;
     cin>>k;
     printTree3(root);
-    int ans = findNextLarger(root,k);
-    cout<<k+ans<<endl;
+    // int minDiff = findNextLarger(root,k);
+    int nextLarger = findNextLarger2(root,k);
+    // cout<<k+minDiff<<endl;
+    cout<<nextLarger<<endl;
 }
